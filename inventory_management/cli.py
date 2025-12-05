@@ -177,17 +177,21 @@ class InventoryCLI:
         name = input(f"Name [{product.name}]: ").strip() or None
         category = input(f"Category [{product.category}]: ").strip() or None
         
-        price_input = input(f"Price [${product.price:.2f}]: $").strip()
-        price = float(price_input) if price_input else None
-        
-        qty_input = input(f"Quantity [{product.quantity}]: ").strip()
-        quantity = int(qty_input) if qty_input else None
-        
-        desc_input = input(f"Description [{product.description or 'N/A'}]: ").strip()
-        description = desc_input if desc_input else None
-        
-        reorder_input = input(f"Reorder Level [{product.reorder_level}]: ").strip()
-        reorder_level = int(reorder_input) if reorder_input else None
+        try:
+            price_input = input(f"Price [${product.price:.2f}]: $").strip()
+            price = float(price_input) if price_input else None
+            
+            qty_input = input(f"Quantity [{product.quantity}]: ").strip()
+            quantity = int(qty_input) if qty_input else None
+            
+            desc_input = input(f"Description [{product.description or 'N/A'}]: ").strip()
+            description = desc_input if desc_input else None
+            
+            reorder_input = input(f"Reorder Level [{product.reorder_level}]: ").strip()
+            reorder_level = int(reorder_input) if reorder_input else None
+        except ValueError:
+            print("\n[!] Invalid number format. Update cancelled.")
+            return
         
         supplier_input = input(f"Supplier [{product.supplier or 'N/A'}]: ").strip()
         supplier = supplier_input if supplier_input else None

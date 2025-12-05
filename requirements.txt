@@ -1,0 +1,6 @@
+# Inventory Management System - Dependencies
+# This project uses Python standard library only
+# No external dependencies required
+
+# For development/testing:
+# pytest>=7.0.0  # Optional: alternative test runner

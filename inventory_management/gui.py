@@ -21,7 +21,7 @@ class InventoryGUI:
         
         # Set appearance mode and color theme
         ctk.set_appearance_mode("dark")  # Dark mode
-        ctk.set_default_color_theme("dark-blue")  # We'll customize this with purple
+        ctk.set_default_color_theme("dark-blue")  # Base theme, customized with purple below
         
         self.root = ctk.CTk()
         self.root.title("Inventory Management System")

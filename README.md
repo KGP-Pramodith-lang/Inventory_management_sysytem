@@ -20,7 +20,8 @@ A simple inventory management system made for our Cost & Management Accounting c
 ## Requirements
 
 - Python 3.7 or higher
-- tkinter (for GUI - usually included with Python, or install via `python3-tk` on Linux)
+- customtkinter (for modern GUI with dark mode)
+- tkinter (usually included with Python, or install via `python3-tk` on Linux)
 
 ## Installation
 
@@ -30,12 +31,17 @@ git clone https://github.com/KGP-Pramodith-lang/Inventory_management_sysytem.git
 cd Inventory_management_sysytem
 ```
 
-2. On Linux, ensure tkinter is installed (for GUI):
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. On Linux, ensure tkinter is installed (for GUI):
 ```bash
 sudo apt-get install python3-tk
 ```
 
-3. Run the application:
+4. Run the application:
 ```bash
 # Launch GUI (default)
 python main.py
@@ -51,7 +57,7 @@ python main.py --cli
 
 ### Graphical User Interface (GUI)
 
-Run the GUI application:
+Run the modern GUI application with dark mode and purple theme:
 
 ```bash
 python main.py
@@ -59,17 +65,36 @@ python main.py
 python main.py --gui
 ```
 
-The GUI provides a tabbed interface with the following sections:
+The GUI provides a modern, dark-themed tabbed interface with the following sections:
 
-![Inventory Management GUI](https://github.com/user-attachments/assets/d41c1012-51c9-4e00-8c8c-29ee632a9ae9)
+#### Main Interface
+![Inventory Management GUI - Main](screenshots/gui_main.png)
 
 **GUI Features:**
-- **All Products Tab**: View all inventory items in a table with refresh, view details, update, and delete functions
-- **Add Product Tab**: Form to add new products with all necessary fields
+- **Modern Dark Theme**: Sleek dark mode with purple accent colors for a professional look
+- **All Products Tab**: View all inventory items in a scrollable table with:
+  - Checkboxes for product selection
+  - Color-coded status indicators (green for OK, red for LOW stock)
+  - Refresh, view details, update, and delete functions
+- **Add Product Tab**: Beautiful form to add new products with all necessary fields
+  
+  ![Add Product Form](screenshots/gui_add_product.png)
+
 - **Stock Management Tab**: Separate sections to add or remove stock from products
-- **Search Tab**: Search products by name, category, or supplier
+- **Search Tab**: Search products by name, category, or supplier with radio button selection
+  
+  ![Search Interface](screenshots/gui_search.png)
+
 - **Reports Tab**: Generate comprehensive inventory reports and view low stock items
-- **Menu Bar**: File operations (backup, exit), view options, and help
+  
+  ![Reports View](screenshots/gui_reports.png)
+
+- **Top Menu Bar**: Quick access buttons for:
+  - Backup Data
+  - Refresh All
+  - Low Stock alerts
+  - About information
+  - Exit application
 
 ### Command Line Interface (CLI)
 

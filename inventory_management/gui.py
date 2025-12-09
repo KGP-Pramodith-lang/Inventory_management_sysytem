@@ -8,6 +8,9 @@ from typing import Optional
 from .inventory import InventoryManager
 from .models import Product
 
+# Constants
+MAX_LOW_STOCK_DISPLAY = 10  # Maximum number of low stock items to display in popup
+
 
 class InventoryGUI:
     """Tkinter-based GUI for inventory management."""
@@ -425,7 +428,7 @@ Stock Status:  {'LOW STOCK!' if product.is_low_stock() else 'OK'}
         
         ttk.Label(dialog, text="Description:").grid(row=4, column=0, sticky=tk.W, padx=10, pady=5)
         description_entry = ttk.Entry(dialog, width=40)
-        description_entry.insert(0, product.description)
+        description_entry.insert(0, product.description or "")
         description_entry.grid(row=4, column=1, padx=10, pady=5)
         
         ttk.Label(dialog, text="Reorder Level:").grid(row=5, column=0, sticky=tk.W, padx=10, pady=5)
@@ -435,7 +438,7 @@ Stock Status:  {'LOW STOCK!' if product.is_low_stock() else 'OK'}
         
         ttk.Label(dialog, text="Supplier:").grid(row=6, column=0, sticky=tk.W, padx=10, pady=5)
         supplier_entry = ttk.Entry(dialog, width=40)
-        supplier_entry.insert(0, product.supplier)
+        supplier_entry.insert(0, product.supplier or "")
         supplier_entry.grid(row=6, column=1, padx=10, pady=5)
         
         def save_update():
@@ -599,11 +602,11 @@ Stock Status:  {'LOW STOCK!' if product.is_low_stock() else 'OK'}
             messagebox.showinfo("Low Stock", "No products are low on stock.")
         else:
             message = f"Found {len(low_stock)} low stock item(s):\n\n"
-            for product in low_stock[:10]:  # Show first 10
+            for product in low_stock[:MAX_LOW_STOCK_DISPLAY]:
                 message += f"• {product.name} (SKU: {product.sku}): {product.quantity} units\n"
             
-            if len(low_stock) > 10:
-                message += f"\n... and {len(low_stock) - 10} more"
+            if len(low_stock) > MAX_LOW_STOCK_DISPLAY:
+                message += f"\n... and {len(low_stock) - MAX_LOW_STOCK_DISPLAY} more"
             
             messagebox.showwarning("Low Stock Alert", message)
     
@@ -622,7 +625,10 @@ Stock Status:  {'LOW STOCK!' if product.is_low_stock() else 'OK'}
     
     def show_about(self):
         """Show about dialog."""
-        about_text = """
+        from datetime import datetime
+        current_year = datetime.now().year
+        
+        about_text = f"""
 Inventory Management System
 Version 1.0
 
@@ -637,7 +643,7 @@ Features:
 • Inventory Reports
 • Data Backup
 
-© 2024 - Cost & Management Accounting Course
+© {current_year} - Cost & Management Accounting Course
 """
         messagebox.showinfo("About", about_text)
     

@@ -23,12 +23,18 @@ import sys
 
 def main():
     """Main entry point - choose between CLI and GUI."""
-    # Check if CLI mode is requested
-    use_cli = '--cli' in sys.argv
-    use_gui = '--gui' in sys.argv
+    # Parse command-line arguments
+    args = sys.argv[1:]  # Don't modify sys.argv directly
     
-    # Remove mode flags from argv
-    sys.argv = [arg for arg in sys.argv if arg not in ('--cli', '--gui')]
+    # Check if CLI mode is requested
+    use_cli = '--cli' in args
+    use_gui = '--gui' in args
+    
+    # Remove mode flags from arguments
+    filtered_args = [arg for arg in args if arg not in ('--cli', '--gui')]
+    
+    # Reconstruct sys.argv with filtered arguments
+    sys.argv = [sys.argv[0]] + filtered_args
     
     # Default to GUI if not specified
     if not use_cli and not use_gui:
